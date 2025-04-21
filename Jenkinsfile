@@ -1,6 +1,15 @@
 pipeline {
     agent any
-
+    tools{
+        maven 'Maven 3.9.8'
+        jdk 'jdk17'
+    }
+    stages{
+        stage('Clone')
+            steps{
+                git 'https://github.com/sriabhik/sample_deploy_blog_app'
+            }
+    }
     stages {
         stage('Build') {
             steps {
@@ -13,7 +22,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t article_app_backend:latest .'
+                    sh 'docker build -t article_app-backend:latest .'
                 }
             }
         }
@@ -21,7 +30,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'docker-compose -f ../docker-compose.yml up -d article_app_backend'
+                    sh 'docker-compose -f ../docker-compose.yml up -d article_app-backend'
                 }
             }
         }
