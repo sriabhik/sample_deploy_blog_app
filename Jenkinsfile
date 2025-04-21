@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-       stage('Clone')
-            steps{
-
-                git 'https://github.com/sriabhik/sample_deploy_blog_app'
-            }
     stages {
         stage('Build') {
             steps {
@@ -18,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t article_app-backend:latest .'
+                    sh 'docker build -t springboot-app:latest .'
                 }
             }
         }
@@ -26,7 +21,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'docker-compose -f ../docker-compose.yml up -d article_app-backend'
+                    sh 'docker-compose -f ../docker-compose.yml up -d springboot-app'
                 }
             }
         }
