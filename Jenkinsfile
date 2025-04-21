@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t springboot-app:latest .'
+                    sh 'docker build -t article_app-backend:latest .'
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'docker-compose -f ../docker-compose.yml up -d springboot-app'
+                    sh 'docker-compose -f ../docker-compose.yml up -d article_app-backend'
                 }
             }
         }
