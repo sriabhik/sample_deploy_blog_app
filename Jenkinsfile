@@ -1,12 +1,11 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Clone')
+       stage('Clone')
             steps{
+
                 git 'https://github.com/sriabhik/sample_deploy_blog_app'
             }
-    }
     stages {
         stage('Build') {
             steps {
