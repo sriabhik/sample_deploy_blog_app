@@ -2,6 +2,8 @@
 
 services:
   jenkins:
+    container_name: jenkins
+    user: root
     build: ./jenkins
     ports:
       - "8083:8080"
