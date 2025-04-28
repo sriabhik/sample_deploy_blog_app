@@ -1,130 +1,130 @@
-//version 3
-pipeline {
-      agent {
-        docker {
-                  image 'maven:3.8.7-eclipse-temurin-17'
-          }
-     }
-
-    environment {
-        // Make sure PATH includes docker and other tools
-        PATH = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${env.PATH}"
-    }
-
-    stages {
-
-
-//         stage('Build JAR') {
-//             steps {
-//                 sh '''
-//                     echo "Building Maven Project..."
-//                     mvn clean package
-//                 '''
-//             }
-//         }
-
-//         stage('Archive JAR') {
-//             steps {
-//                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-//             }
-//         }
-
-        stage('Docker Build') {
-            steps {
-                sh '''
-                    echo "Building Docker Image..."
-                    docker build -t article_app-backend:latest .
-                '''
-            }
-        }
-
-        stage('Docker Compose Deploy') {
-            steps {
-                sh '''
-                    echo "Running Docker Compose..."
-                    docker compose down || true
-                    docker compose up -d --build
-                '''
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'Cleaning up workspace...'
-            cleanWs()
-        }
-    }
-}
-
-//version 2
+// //version 3
 // pipeline {
-//     agent {
-//            docker {
-//                  image 'maven:3.8.7-eclipse-temurin-17'
-//          }
-//     }
+//       agent {
+//         docker {
+//                   image 'maven:3.8.7-eclipse-temurin-17'
+//           }
+//      }
+//
 //     environment {
-//         IMAGE_NAME = 'article_app-backend'
-//         IMAGE_TAG = 'latest'
+//         // Make sure PATH includes docker and other tools
+//         PATH = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${env.PATH}"
 //     }
 //
 //     stages {
-// //         stage('Checkout') {
+//
+//
+// //         stage('Build JAR') {
 // //             steps {
-// //                     git 'https://github.com/sriabhik/sample_deploy_blog_app'
+// //                 sh '''
+// //                     echo "Building Maven Project..."
+// //                     mvn clean package
+// //                 '''
 // //             }
 // //         }
 //
-//         stage('Build') {
-//                  steps {
-//                       script {
-//                            sh 'mvn clean package -DskipTests'
-//                       }
-//                  }
-//         }
+// //         stage('Archive JAR') {
+// //             steps {
+// //                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+// //             }
+// //         }
 //
-//         stage('Build Docker Image') {
+//         stage('Docker Build') {
 //             steps {
 //                 sh '''
-//                     docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
-//                 '''
-//             }
-//         }
-//         stage('Deploy') {
-//             steps {
-//                 sh '''
-//                    docker compose down || true
-//                    docker compose up -d --build
+//                     echo "Building Docker Image..."
+//                     docker build -t article_app-backend:latest .
 //                 '''
 //             }
 //         }
 //
-// //         stage('Push to Docker Hub (optional)') {
-// //             when {
-// //                 branch 'main'
-// //             }
-// //             steps {
-// //                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials-id', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-// //                     sh '''
-// //                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-// //                         docker tag ${IMAGE_NAME}:${IMAGE_TAG} $DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG}
-// //                         docker push $DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG}
-// //                     '''
-// //                 }
-// //             }
-// //         }
+//         stage('Docker Compose Deploy') {
+//             steps {
+//                 sh '''
+//                     echo "Running Docker Compose..."
+//                     docker compose down || true
+//                     docker compose up -d --build
+//                 '''
+//             }
+//         }
 //     }
 //
 //     post {
-//         success {
-//             echo 'Docker Image built successfully!'
-//         }
-//         failure {
-//             echo 'Build failed.'
+//         always {
+//             echo 'Cleaning up workspace...'
+//             cleanWs()
 //         }
 //     }
 // }
+
+//version 2
+pipeline {
+    agent {
+           docker {
+                 image 'maven:3.8.7-eclipse-temurin-17'
+         }
+    }
+    environment {
+        IMAGE_NAME = 'article_app-backend'
+        IMAGE_TAG = 'latest'
+    }
+
+    stages {
+//         stage('Checkout') {
+//             steps {
+//                     git 'https://github.com/sriabhik/sample_deploy_blog_app'
+//             }
+//         }
+
+        stage('Build') {
+                 steps {
+                      script {
+                           sh 'mvn clean package -DskipTests'
+                      }
+                 }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                '''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh '''
+                   docker compose down || true
+                   docker compose up -d --build
+                '''
+            }
+        }
+
+//         stage('Push to Docker Hub (optional)') {
+//             when {
+//                 branch 'main'
+//             }
+//             steps {
+//                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials-id', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+//                     sh '''
+//                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+//                         docker tag ${IMAGE_NAME}:${IMAGE_TAG} $DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG}
+//                         docker push $DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG}
+//                     '''
+//                 }
+//             }
+//         }
+    }
+
+    post {
+        success {
+            echo 'Docker Image built successfully!'
+        }
+        failure {
+            echo 'Build failed.'
+        }
+    }
+}
 
 //version 1
 // pipeline {
