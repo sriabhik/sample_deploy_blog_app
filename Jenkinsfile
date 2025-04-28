@@ -25,7 +25,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t article_app-backend:latest .'
+                    sh 'docker build -t article_app-backend:latest'
                 }
             }
         }
