@@ -13,7 +13,7 @@ pipeline {
 //             IMAGE_TAG = "${RELEASE_NUMBER}"
 //
 //         }
-//     stages {
+    stages {
 //         stage('Build') {
 //             steps {
 //                 script {

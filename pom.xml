@@ -17,22 +17,9 @@
 		<java.version>17</java.version>
 	</properties>
 
-<!--		<repositories>-->
-<!--			<repository>-->
-<!--				<id>splunk</id>-->
-<!--				<url>https://splunk.jfrog.io/splunk/ext-releases-local</url>-->
-<!--			</repository>-->
-<!--		</repositories>-->
 
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.splunk.logging/splunk-library-javalogging -->
-		<!-- https://mvnrepository.com/artifact/com.splunk.logging/splunk-library-javalogging -->
-		<dependency>
-			<groupId>com.splunk.logging</groupId>
-			<artifactId>splunk-library-javalogging</artifactId>
-			<version>1.11.5</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
