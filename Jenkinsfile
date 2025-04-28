@@ -20,13 +20,16 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy Docker Image') {
-                    steps {
-                        sh '''
-                            docker-compose -f ../docker-compose.yml up -d ${IMAGE_NAME}:${IMAGE_TAG}
-                        '''
-                    }
-                }
+        stage('Deploy') {
+            steps {
+                sh '''
+                    docker stop article_app-backend-container || true
+                    docker rm article_app-backend-container || true
+                    docker run -d --name article_app-backend-container -p 8080:8080 ${IMAGE_NAME}:${IMAGE_TAG}
+                '''
+        }
+        }
+        }
 
 //         stage('Push to Docker Hub (optional)') {
 //             when {
