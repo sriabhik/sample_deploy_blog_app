@@ -27,8 +27,7 @@ pipeline {
                     docker rm article_app-backend-container || true
                     docker run -d --name article_app-backend-container -p 8080:8080 ${IMAGE_NAME}:${IMAGE_TAG}
                 '''
-        }
-        }
+            }
         }
 
 //         stage('Push to Docker Hub (optional)') {
