@@ -76,13 +76,13 @@ pipeline {
 //             }
 //         }
 
-        stage('Build') {
-                 steps {
-                      script {
-                           sh 'mvn clean package -DskipTests'
-                      }
-                 }
-        }
+//         stage('Build') {
+//                  steps {
+//                       script {
+//                            sh 'mvn clean package -DskipTests'
+//                       }
+//                  }
+//         }
 
         stage('Build Docker Image') {
             steps {

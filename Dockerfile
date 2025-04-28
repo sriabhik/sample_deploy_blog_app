@@ -5,7 +5,8 @@ COPY target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
 
-FROM jenkins/jenkins:lts
-USER root
-RUN apt-get update && apt-get install -y docker.io
-USER jenkins
+#FROM jenkins/jenkins:lts
+#USER root
+#RUN apt-get update && apt-get install -y docker.io
+#USER jenkins
+#ENTRYPOINT ["sh", "/usr/src/app/docker-entrypoint.sh"]
