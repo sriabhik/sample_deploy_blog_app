@@ -20,6 +20,13 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy Docker Image') {
+                    steps {
+                        sh '''
+                            docker-compose -f ../docker-compose.yml up -d ${IMAGE_NAME}:${IMAGE_TAG}
+                        '''
+                    }
+                }
 
 //         stage('Push to Docker Hub (optional)') {
 //             when {
