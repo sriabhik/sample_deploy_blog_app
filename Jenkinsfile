@@ -1,6 +1,10 @@
 //version 3
 pipeline {
-    agent any
+      agent {
+        docker {
+                  image 'maven:3.8.7-eclipse-temurin-17'
+          }
+     }
 
     environment {
         // Make sure PATH includes docker and other tools
