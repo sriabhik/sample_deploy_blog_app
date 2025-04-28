@@ -7,11 +7,11 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                    git 'https://github.com/sriabhik/sample_deploy_blog_app'
-            }
-        }
+//         stage('Checkout') {
+//             steps {
+//                     git 'https://github.com/sriabhik/sample_deploy_blog_app'
+//             }
+//         }
 
         stage('Build Docker Image') {
             steps {
