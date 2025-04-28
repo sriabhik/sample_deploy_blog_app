@@ -23,11 +23,11 @@ pipeline {
 //             }
 //         }
 
-        stage('Archive JAR') {
-            steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-            }
-        }
+//         stage('Archive JAR') {
+//             steps {
+//                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+//             }
+//         }
 
         stage('Docker Build') {
             steps {
