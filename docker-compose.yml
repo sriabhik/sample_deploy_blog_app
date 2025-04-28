@@ -2,7 +2,7 @@
 
 services:
   jenkins:
-    container_name: jenkins
+    container_name: jenkins_blog_app
     user: root
     build: ./jenkins
     ports:
