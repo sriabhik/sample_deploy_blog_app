@@ -14,14 +14,14 @@ pipeline {
     stages {
 
 
-        stage('Build JAR') {
-            steps {
-                sh '''
-                    echo "Building Maven Project..."
-                    mvn clean package
-                '''
-            }
-        }
+//         stage('Build JAR') {
+//             steps {
+//                 sh '''
+//                     echo "Building Maven Project..."
+//                     mvn clean package
+//                 '''
+//             }
+//         }
 
         stage('Archive JAR') {
             steps {
