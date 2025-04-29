@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/sriabhik/sample_deploy_blog_app.git'  // Replace with your repo URL
+                git branch: 'main',url: 'https://github.com/sriabhik/sample_deploy_blog_app.git'  // Replace with your repo URL
             }
         }
 
