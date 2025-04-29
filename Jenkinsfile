@@ -1,6 +1,6 @@
 pipeline {
     agent {
-                label 'docker-enabled',
+            
                 docker {
                       image 'maven:3.8.7-eclipse-temurin-17'
               }
@@ -27,9 +27,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def jarName = sh(script: "ls target/*.jar | grep -v 'original' | head -n 1", returnStdout: true).trim()
+                    def jarName = pwd() //(script: "ls target/*.jar | grep -v 'original' | head -n 1", returnStdout: true).trim()
                     sh '''
-                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} --build-arg JAR_FILE=blog-application-0.0.1-SNAPSHOT.jar .
+                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ${jarName}
                     '''
                 }
             }
