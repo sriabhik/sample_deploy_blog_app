@@ -27,6 +27,7 @@ pipeline {
             steps {
                 script {
                     def jarName = sh(script: "ls target/*.jar | grep -v 'original' | head -n 1", returnStdout: true).trim()
+                    sh "chmod +x -R ${env.WORKSPACE}"
                     sh """
                         docker build -t ${IMAGE_NAME}:${IMAGE_TAG} \
                         --build-arg JAR_FILE=${jarName} .
