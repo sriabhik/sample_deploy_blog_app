@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+        agent {
+                    docker {
+                          image 'maven:3.8.7-eclipse-temurin-17'
+                  }
+             }
 
     environment {
         IMAGE_NAME = 'sriabhik/article_app-backend'
@@ -51,7 +55,7 @@ pipeline {
 //                       image 'maven:3.8.7-eclipse-temurin-17'
 //               }
 //          }
-//
+
 //     environment {
 //         IMAGE_NAME = 'article_app-backend'  // Change as needed
 //         IMAGE_TAG = 'latest'
