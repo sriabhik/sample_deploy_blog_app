@@ -1,7 +1,7 @@
 package com.blogapplication;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,10 +20,7 @@ public class BlogApplication implements CommandLineRunner {
 		SpringApplication.run(BlogApplication.class, args);
 	}
 	//spring automatically create object and it make enable we ca use anywhere
-    @Bean 
-    public ModelMapper modelMapper() {
-    	return new ModelMapper();
-    }
+
     @Override
     public void run(String... args) throws Exception {
 //    	System.out.println(this.passwordEncoder.encode("sriabhik"))

@@ -4,7 +4,7 @@ import java.security.Principal;
 
 import com.blogapplication.payloads.JwtAuthRequest;
 import com.blogapplication.repositories.UserRepo;
-import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +28,7 @@ public class AuthController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private ModelMapper modelMapper;
-	//register new user
+
 	@Autowired
 	private UserRepo userRepo;
 	//Logger logger = LoggerFactory.getLogger(AuthController.class);
