@@ -28,7 +28,7 @@ pipeline {
                 script {
                     def jarName = sh(script: "ls target/*.jar | grep -v 'original' | head -n 1", returnStdout: true).trim()
                     sh '''
-                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} --build-arg JAR_FILE=${jarName} .
+                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} --build-arg JAR_FILE=blog-application-0.0.1-SNAPSHOT.jar .
                     '''
                 }
             }
