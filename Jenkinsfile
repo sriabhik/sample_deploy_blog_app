@@ -1,6 +1,6 @@
 pipeline {
     agent {
-                label 'docker-enabled'
+                label 'docker-enabled',
                 docker {
                       image 'maven:3.8.7-eclipse-temurin-17'
               }
