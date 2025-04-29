@@ -8,3 +8,5 @@ apt-get install -y docker.io && \
 
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+
+ENTRYPOINT["/usr/local/bin/script.sh.copy"]
