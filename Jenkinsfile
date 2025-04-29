@@ -1,6 +1,5 @@
 pipeline {
     agent {
-            
                 docker {
                       image 'maven:3.8.7-eclipse-temurin-17'
               }
@@ -27,10 +26,10 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def jarName = pwd() //(script: "ls target/*.jar | grep -v 'original' | head -n 1", returnStdout: true).trim()
-                    sh '''
-                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ${jarName}
-                    '''
+                    def jarName = sh(script: "ls target/*.jar | grep -v 'original' | head -n 1", returnStdout: true).trim()
+                    sh """
+                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} --build-arg JAR_FILE=${jarName} .
+                    """
                 }
             }
         }
