@@ -39,7 +39,7 @@ services:
   app:
     build: .
     container_name: article_app-backend
-    restart: always
+#    restart: always
     depends_on:
       - mysql
 #      - splunk
@@ -47,9 +47,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydb?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
-      SPLUNK_HEC_URL: http://localhost:8088
-      SPLUNK_HEC_TOKEN: 04a0b118-ea27-4e88-a268-16ae5447baee
-      SPLUNK_HEC_ENABLE: true
+#      SPLUNK_HEC_URL: http://localhost:8088
+#      SPLUNK_HEC_TOKEN: 04a0b118-ea27-4e88-a268-16ae5447baee
+#      SPLUNK_HEC_ENABLE: true
     ports:
       - "8080:8080"
 #  jenkins:
